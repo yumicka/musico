@@ -1,13 +1,22 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+// @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+// @import url('https://fonts.googleapis.com/css2?family=Lato:ital,wght@0,100;0,300;0,400;0,700;0,900;1,100;1,300;1,400;1,700;1,900&family=Lora:ital,wght@0,400..700;1,400..700&family=Nunito:ital,wght@0,200..1000;1,200..1000&family=Roboto:ital,wght@0,100..900;1,100..900&family=Rubik:ital,wght@0,300..900;1,300..900&display=swap');
+@import url('resources/css/Fonts/WEB/css/satoshi.css');
+
 
 *{
-    transform: 0.2s;
+    transition: 0.2s;
+    // font-family: 'Rubik', sans-serif;
+    font-family: 'Satoshi-Medium', 'sans-serif';
 }
 
-.boxie{
-    background: red;
+:root {
+    --bg: #000;
+    --text: #fff;
+    --accent: #1aa58c;
+    --line: rgba(255,255,255,.5);
 }
 
 .button-nav{
@@ -15,8 +24,152 @@
     display: flex;
     justify-content: end;
     padding: 0 20px 0 0;
+}
 
-    &:hover{
-        
+.MainTopWrapper{
+    min-width: 100%;
+    padding-top: 80px;
+    background: #000;
+}
+
+.MainTopContent{
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    
+    .imgBox{
+        flex: 1;
+        min-width: 850px;
+        overflow: hidden;
+
+        img{
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+            display: block;
+            mask-image:
+                linear-gradient(
+                    to top,
+                    rgba(0,0,0,0) 0%,
+                    rgba(0,0,0,1) 40%
+                ),
+                linear-gradient(
+                    to left,
+                    rgba(0,0,0,0) 0%,
+                    rgba(0,0,0,1) 40%
+                );
+                mask-composite: intersect;
+                -webkit-mask-composite: source-in;
     }
+}
+        
+    .textBox{
+        flex: 1;
+        min-width: 320px;
+        display: flex;
+        align-items: center;
+        justify-content:flex-end;
+        padding: 40px 32px;
+    }
+
+    .textBox-content{
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        p{
+            color: var(--text);
+            font-size: 100px;
+            text-align: right;
+        }
+    }
+
+    .btn {
+        position: relative;
+        display: inline-block;
+        align-self: flex-end;
+        padding: 14px 28px;
+        font-size: 22px;
+        font-weight: 600;
+        color: #fff;
+        background: var(--accent);
+        border-radius: 14px;
+        text-decoration: none;
+        overflow: hidden;
+        z-index: 1;
+        
+        &::before {
+            content: '';
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            width: 0;
+            height: 0;
+            background: #1f7c6b;
+            border-radius: 50%;
+            transform: translate(-50%, -50%);
+            transition: width 0.6s ease, height 0.6s ease;
+            z-index: -1;
+        }
+
+        &:hover::before {
+            width: 300%;
+            height: 300%;
+        }
+    } 
+} 
+
+.MainPageCenter-hero{
+    min-width: 100%;
+    background-color: #000;
+    display: flex;
+    justify-content: center;
+    
+    .MainPageCenter-content{
+        max-width: 1200px;
+        width: 100%;
+        display: flex;
+        flex-direction: column;
+        gap: 40px;
+        color: var(--text);
+        margin: 10% 0;
+    
+        .dynamic-text{
+            font-size: 70px;
+            text-align: center;
+
+            .counter{
+                display: inline-block;
+                width: 4ch;
+                text-align: center;
+            }
+        }
+
+        .pageCenterBox{
+            display: flex;
+            flex-wrap: wrap;
+            flex-direction: row;
+            gap: 20px;
+            justify-content: center;
+            align-items: baseline;
+
+            .elementBox{
+                flex: 1;
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                text-align: center;
+                gap: 10px;
+
+                .elementBox-i{
+                    font-size: 40px;
+                }
+
+                .elementBox-text{
+                    font-size: 30px;
+                }
+            }
+            
+        }
+    }   
 }
