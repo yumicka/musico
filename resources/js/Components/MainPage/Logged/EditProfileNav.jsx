@@ -97,9 +97,7 @@ export default function Header() {
   const [anchorEl, setAnchorEl] = React.useState(null);
   const [mobileMoreAnchorEl, setMobileMoreAnchorEl] = React.useState(null);
   const [activeNav, setActiveNav] = React.useState('home');
-  const [search, setSearch] = React.useState(
-  usePage().props.filters?.search || ''
-);
+  
 
   const isMenuOpen = Boolean(anchorEl);
   const isMobileMenuOpen = Boolean(mobileMoreAnchorEl);
@@ -322,32 +320,6 @@ export default function Header() {
               display: { xs: 'none', sm: 'block' },
             }}
           />
-          
-          <Search>
-            <SearchIconWrapper>
-              <SearchIcon />
-            </SearchIconWrapper>
-            <StyledInputBase
-              placeholder="Meklēt aktualitātes…"
-              value={search}
-              onChange={(e) => {
-                const value = e.target.value;
-                setSearch(value);
-
-                router.get(
-                  route('mainpage'),
-                  { search: value },
-                  {
-                    preserveState: true,
-                    replace: true,
-                  }
-                );
-              }}
-              inputProps={{ 'aria-label': 'search' }}
-            />
-
-          </Search>
-          
           <Box sx={{ 
             display: { xs: 'none', md: 'flex' }, 
             gap: 1,
@@ -373,20 +345,7 @@ export default function Header() {
           </Box>
           
           <Box sx={{ display: { xs: 'none', md: 'flex' } }}>
-            <IconButton size="large" aria-label="show 4 new mails" color="inherit">
-              <Badge badgeContent={4} color="error">
-                <MailIcon />
-              </Badge>
-            </IconButton>
-            <IconButton
-              size="large"
-              aria-label="show 17 new notifications"
-              color="inherit"
-            >
-              <Badge badgeContent={17} color="error">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+            
             <IconButton
               size="large"
               edge="end"

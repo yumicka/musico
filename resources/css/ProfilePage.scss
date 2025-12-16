@@ -1,0 +1,82 @@
+// Profile Page Styles
+.profile-page {
+  background: #000000;
+  color: #fff;
+  
+  .fade {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.6s ease, transform 0.6s ease;
+    
+    &.visible {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+  
+  // Стили для форм
+  form {
+    .relative {
+      .absolute {
+        svg {
+          transition: color 0.3s ease;
+        }
+      }
+      
+      input:focus + .absolute {
+        svg {
+          color: #1aa58c;
+        }
+      }
+    }
+  }
+  
+  // Стили для кнопок
+  .primary-button {
+    transition: all 0.3s ease;
+    
+    &:hover:not(:disabled) {
+      transform: translateY(-2px);
+    }
+    
+    &:active:not(:disabled) {
+      transform: translateY(0);
+    }
+  }
+  
+  // Стили для модального окна
+  .modal-content {
+    animation: modalAppear 0.3s ease-out;
+    
+    @keyframes modalAppear {
+      from {
+        opacity: 0;
+        transform: scale(0.95) translateY(-20px);
+      }
+      to {
+        opacity: 1;
+        transform: scale(1) translateY(0);
+      }
+    }
+  }
+  
+  // Адаптивность
+  @media (max-width: 768px) {
+    .container {
+      padding-left: 1rem;
+      padding-right: 1rem;
+    }
+    
+
+    
+    .flex.justify-end {
+      flex-direction: column;
+      gap: 0.75rem;
+      
+      button {
+        width: 100%;
+        justify-content: center;
+      }
+    }
+  }
+}

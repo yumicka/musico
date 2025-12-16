@@ -13,9 +13,7 @@ use Inertia\Response;
 
 class ProfileController extends Controller
 {
-    /**
-     * Display the user's profile form.
-     */
+
     public function edit(Request $request): Response
     {
         return Inertia::render('Profile/Edit', [
@@ -24,25 +22,38 @@ class ProfileController extends Controller
         ]);
     }
 
-    /**
-     * Update the user's profile information.
-     */
-    public function update(ProfileUpdateRequest $request): RedirectResponse
+   public function update(Request $request)
     {
-        $request->user()->fill($request->validated());
+        $validated = $request->validate([
+            'name' => ['sometimes', 'required', 'string', 'max:255'],
+            'email' => ['sometimes', 'required', 'email'],
+            'profile_photo' => ['nullable', 'image', 'max:2048'],
+        ]);
 
-        if ($request->user()->isDirty('email')) {
-            $request->user()->email_verified_at = null;
+        $user = $request->user();
+
+        // обновляем только то, что есть
+        if (array_key_exists('name', $validated)) {
+            $user->name = $validated['name'];
         }
 
-        $request->user()->save();
+        if (array_key_exists('email', $validated)) {
+            $user->email = $validated['email'];
+        }
 
-        return Redirect::route('profile.edit');
+        if ($request->hasFile('profile_photo')) {
+            $path = $request->file('profile_photo')
+                ->store('profile-photos', 'public');
+
+            $user->profile_photo_path = $path;
+        }
+
+        $user->save();
+
+        return back();
     }
 
-    /**
-     * Delete the user's account.
-     */
+
     public function destroy(Request $request): RedirectResponse
     {
         $request->validate([
