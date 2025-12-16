@@ -3,6 +3,7 @@ import Box from '@mui/material/Box';
 import Toolbar from '@mui/material/Toolbar';
 import Button from '@mui/material/Button';
 import useScrollTrigger from '@mui/material/useScrollTrigger';
+import { Link } from '@inertiajs/react';
 
 
 export default function ButtonAppBar() {
@@ -56,6 +57,7 @@ export default function ButtonAppBar() {
           
           <Box sx={{ gridColumn: trigger ? '2' : '3', display: 'flex', alignItems: 'center', justifyContent: trigger ? 'center' : 'end', gap: 4, mr: 4, mt: trigger ? 4 : 3, transition: '0.2s'}}>
             <Button
+              component={Link}
               href={route('login')}
               sx={{
                 textTransform: 'none', 
@@ -86,6 +88,7 @@ export default function ButtonAppBar() {
               Ielogoties
             </Button>
             <Button
+              component={Link}
               href={route('register')}
               sx={{ textTransform: 'none', fontWeight: 600, fontSize: 22, color: '#fff', fontFamily: 'Satoshi-Medium', transition: '0.2s',
                 '&::after': {

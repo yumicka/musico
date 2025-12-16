@@ -55,7 +55,7 @@ const [count, setCount] = useState(700)
 
 
     return(
-        <div className='MainPageCenter-hero'>
+        <div className='MainPageCenter-hero fade'>
             <div className='MainPageCenter-content'>
                 <div className="dynamic-text">
                     <h1>Vairāk nekā <span ref={counterRef} className="counter">{count}</span> lietotāju izvēlas</h1>   
